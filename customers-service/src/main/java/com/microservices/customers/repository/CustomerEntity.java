@@ -25,7 +25,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "ACCOUNTS")
+@Table(name = "CUSTOMER")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
         allowGetters = true)
@@ -43,7 +43,7 @@ public class CustomerEntity {
     @Column(name = "last_name", nullable = false)
     private String lastName;
     
-    @Column(name = "birthdate", nullable = false)
+    @Column(name = "birthdate")
     private Date birthDate;
 
     @Column(nullable = false, updatable = false, name="date_created")

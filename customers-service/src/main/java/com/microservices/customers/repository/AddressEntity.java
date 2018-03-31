@@ -9,7 +9,7 @@ import lombok.Data;
 @Embeddable
 public class AddressEntity {
 	
-	@Column(name="STREET")
+	@Column(name="STREET_ADDRESS")
     private String streetAddress;
     
     @Column(name="STATE")

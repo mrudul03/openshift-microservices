@@ -20,6 +20,7 @@ public class CustomerService {
 	private ResourceToEntityTransformer entityTransformer;
 	
 	public CustomerEntity createCustomer(CustomerResource customerResource){
+		System.out.println("In createCustomer Service");
 		CustomerEntity customerEntity = entityTransformer.transformCustomer(customerResource);
 		return customersRepository.save(customerEntity);
 	}

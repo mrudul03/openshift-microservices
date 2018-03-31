@@ -1,0 +1,19 @@
+{
+	"firstName": "First Name",
+	"lastName": "Last Name",
+	"addresses": [
+	    {
+	        "streetAddress": "Street Address",
+	        "state": "State",
+	        "city": "City",
+	        "areaCode": "3000",
+	        "addressType": "Home Address"
+	    }
+	],
+	"contacts": [
+	    {
+	        "contactType": "mobile",
+	        "contactNumber": "1212121212"
+	    }
+	]
+}

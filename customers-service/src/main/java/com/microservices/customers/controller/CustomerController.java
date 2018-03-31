@@ -1,5 +1,7 @@
 package com.microservices.customers.controller;
 
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.microservices.customers.contract.AddressResource;
+import com.microservices.customers.contract.ContactResource;
 import com.microservices.customers.contract.CustomerResource;
 import com.microservices.customers.domain.CustomerService;
 import com.microservices.customers.repository.CustomerEntity;
@@ -26,7 +30,10 @@ public class CustomerController {
 	
 	@RequestMapping(value="/customers/", 
 			method = RequestMethod.POST, headers = "Accept=application/json")
-	public ResponseEntity<CustomerResource> createCustomer(@RequestBody CustomerResource customerResource ){
+	public ResponseEntity<CustomerResource> createCustomer(
+			@RequestBody CustomerResource customerResource ){
+		System.out.println("In createCustomer Controller");
+		
 		CustomerEntity customerEntity = customerService.createCustomer(customerResource);
 		return ResponseEntity.ok(resourceTransformer.transformCustomer(customerEntity));
 	}
@@ -48,8 +55,35 @@ public class CustomerController {
 	@RequestMapping(value="/customers/", 
 			method = RequestMethod.GET, headers = "Accept=application/json")
 	public ResponseEntity<List<CustomerResource>> getAllCustomers(){
-		List<CustomerEntity> customers = customerService.getAllCustomers();
-		List<CustomerResource> customerResources = resourceTransformer.transformCustomerList(customers);
-		return ResponseEntity.ok(customerResources);
+		
+		System.out.println("in getAllCustomers.........");
+		
+//		List<CustomerEntity> customers = customerService.getAllCustomers();
+//		List<CustomerResource> customerResources = resourceTransformer.transformCustomerList(customers);
+//		return ResponseEntity.ok(customerResources);
+		
+		return ResponseEntity.ok(createDummyCustomers());
+	}
+	
+	private List<CustomerResource> createDummyCustomers(){
+		ContactResource contactResource = new ContactResource();
+		contactResource.setContactNumber("1212121212");
+		contactResource.setContactType("mobile");
+		
+		AddressResource addressResource = new AddressResource();
+		addressResource.setAddressType("Home Address");
+		addressResource.setAreaCode("3000");
+		addressResource.setCity("City");
+		addressResource.setState("State");
+		addressResource.setStreetAddress("Street Address");
+		
+		CustomerResource customerResource = new CustomerResource();
+		customerResource.setCustomerId(Long.valueOf(1));
+		customerResource.setBirthDate(new Date());
+		customerResource.setFirstName("First Name");
+		customerResource.setLastName("Last Name");
+		customerResource.setContacts(Collections.singletonList(contactResource));
+		customerResource.setAddresses(Collections.singletonList(addressResource));
+		return Collections.singletonList(customerResource);
 	}
 }
