@@ -1,3 +1,4 @@
+http://customers-service-myproject.192.168.64.3.nip.io/customers/
 {
 	"firstName": "First Name",
 	"lastName": "Last Name",
