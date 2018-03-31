@@ -21,6 +21,7 @@ public class EntityToResourceTransformer {
 		
 	    public CustomerResource apply(CustomerEntity customerEntity) {
 	    	CustomerResource customerResource = new CustomerResource();
+	    	customerResource.setCustomerId(customerEntity.getId());
 	    	customerResource.setFirstName(customerEntity.getFirstName());
 	    	customerResource.setLastName(customerEntity.getLastName());
 	    	customerResource.setBirthDate(customerEntity.getBirthDate());
