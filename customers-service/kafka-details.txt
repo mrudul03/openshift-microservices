@@ -1,2 +1,22 @@
 
 https://www.codenotfound.com/spring-kafka-boot-example.html
+
+## Kafka on Openshift
+openshift kafka template mage Pull Back-off
+https://github.com/redhat-cop/containers-quickstarts/tree/master/kafka
+
+*** https://github.com/rondinif/openshift-kafka
+https://github.com/mattf/openshift-kafka (not tried but should work)
+https://github.com/jim-minter/kafkanetes (not tried but should work)
+https://github.com/debianmaster/openshift-kafka (not tried but should work)
+*** https://github.com/debianmaster/microservices-on-openshift
+https://github.com/strimzi/strimzi (Documentation is not too detailed)
+https://github.com/engapa/kafka-k8s-openshift/tree/master/openshift
+
+https://access.redhat.com/documentation/en-us/reference_architectures/2017/html-single/spring_boot_microservices_on_red_hat_openshift_container_platform_3/index#overview
+
+https://github.com/RHsyseng/spring-boot-msa-ocp
+
+-- https://medium.com/@graemecolman/microservice-architecture-with-red-hat-openshift-platform-part-1-f944f16605b0
+
+
