@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.microservices.customers.contract.CustomerResource;
+import com.microservices.customers.gateway.CustomerEventPublisher;
 import com.microservices.customers.repository.CustomerEntity;
 import com.microservices.customers.repository.CustomersRepository;
 import com.microservices.customers.transform.ResourceToEntityTransformer;
@@ -19,10 +20,19 @@ public class CustomerService {
 	@Autowired
 	private ResourceToEntityTransformer entityTransformer;
 	
+	@Autowired
+	private CustomerEventPublisher accountEventPublisher;
+	
 	public CustomerEntity createCustomer(CustomerResource customerResource){
 		System.out.println("In createCustomer Service");
 		CustomerEntity customerEntity = entityTransformer.transformCustomer(customerResource);
-		return customersRepository.save(customerEntity);
+		CustomerEntity savedCustomer = customersRepository.save(customerEntity);
+		if(null != accountEventPublisher){
+			System.out.println("In service now - Publishing message ####################:");
+			accountEventPublisher.send("customers.t", "Customer created with id:"+ savedCustomer.getId());
+		}
+		
+		return savedCustomer;
 	}
 	
 	public CustomerEntity getCustomer(Long customerId){

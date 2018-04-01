@@ -14,3 +14,16 @@ spring:
 
     hibernate:
       ddl-auto: update
+      
+  kafka:
+    producer:
+      bootstrap-servers: apache-kafka:9092
+    consumer: 
+      topic: customers
+#      group-id: customers
+      
+      
+#kafka:
+#  topic: customers
+#  port: 9092
+#  host: apache-kafka
