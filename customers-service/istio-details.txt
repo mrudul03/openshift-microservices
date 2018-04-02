@@ -8,3 +8,8 @@ K8S installing on Mac
 https://vitalflux.com/install-kubernetes-mac-os-x/
 https://kubernetes.io/docs/getting-started-guides/minikube/
 https://github.com/kubernetes/kubernetes/tree/e3fa83177c4d2d1331d41e7ce70b1f145475587a/examples/guestbook
+
+creating PODs using YAMLs
+https://www.mirantis.com/blog/introduction-to-yaml-creating-a-kubernetes-deployment/
+** https://blog.openshift.com/part-2-creating-a-template-a-technical-walkthrough/
+https://docs.openshift.org/latest/dev_guide/templates.html
