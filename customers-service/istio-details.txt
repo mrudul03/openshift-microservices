@@ -1,0 +1,10 @@
+
+Istio on openshift
+
+https://blog.openshift.com/evaluate-istio-openshift/
+https://istio.io/docs/guides/bookinfo.html
+
+K8S installing on Mac 
+https://vitalflux.com/install-kubernetes-mac-os-x/
+https://kubernetes.io/docs/getting-started-guides/minikube/
+https://github.com/kubernetes/kubernetes/tree/e3fa83177c4d2d1331d41e7ce70b1f145475587a/examples/guestbook
