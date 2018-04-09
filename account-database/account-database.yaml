@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: account-database
+  labels:
+    app: account-app
+spec:
+  ports:
+    - port: 3310
+      protocol: TCP
+      targetPort: 3310
+  selector:
+    app: account-app
+    tier: database
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: account-database
+  labels:
+    app: account-app
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: account-app
+        tier: database
+    spec:
+      containers:
+        - image: registry.access.redhat.com/rhscl/mysql-56-rhel7:latest
+          name: account-database
+          env:
+            - name: MYSQL_USER
+              value: demouser
+            - name: MYSQL_PASSWORD
+              value: password
+            - name: MYSQL_ROOT_PASSWORD
+              value: password
+            - name: MYSQL_DATABASE
+              value: accountdb
+
+          ports:
+            - containerPort: 3310
+              name: db
