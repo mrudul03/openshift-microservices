@@ -41,6 +41,6 @@ spec:
             - name: MYSQL_DB_HOST
               value: account-database
             - name: MYSQL_DB_PORT
-              value: "3310"
+              value: "3306"
           ports:
             - containerPort: 9092

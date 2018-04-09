@@ -81,7 +81,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${spring-boot.version}</version>
 				<configuration>
-					<mainClass>com.microservices.payment.account.PaymentAccountApplication</mainClass>
+					<mainClass>com.microservices.account.PaymentAccountApplication</mainClass>
 				</configuration>
 				<executions>
 					<execution>
