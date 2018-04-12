@@ -1,0 +1,66 @@
+---
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: apache-kafka
+  labels:
+    app: demo-app
+spec:
+  replicas: 1
+  selector:
+    deploymentconfig: apache-kafka
+  template:
+    metadata:
+      labels:
+        deploymentconfig: apache-kafka
+    spec:
+      hostname: apache-kafka
+      containers:
+      - name: apache-kafka
+        image: rondinif/openshift-kafka
+        command:
+        - bin/kafka-server-start.sh
+        args:
+        - config/server.properties
+        - --override
+        - advertised.host.name=apache-kafka
+        - --override
+        - log.segment.bytes=10485760
+        - --override
+        - log.retention.bytes=10485760
+        volumeMounts:
+        - mountPath: /tmp/kafka-logs
+          name: kafka-logs
+        ports:
+        - containerPort: 9092
+      - name: apache-zookeeper
+        image: rondinif/openshift-kafka
+        command:
+        - bin/zookeeper-server-start.sh
+        args:
+        - config/zookeeper.properties
+        volumeMounts:
+        - mountPath: /tmp/zookeeper
+          name: zookeeper
+        ports:
+        - containerPort: 2181
+      volumes:
+      - name: kafka-logs
+        emptyDir: {}
+      - name: zookeeper
+        emptyDir: {}
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: apache-kafka
+  labels:
+    app: demo-app
+spec:
+  ports:
+  - name: kafka
+    port: 9092
+  - name: zookeeper
+    port: 2181
+  selector:
+    deploymentconfig: apache-kafka

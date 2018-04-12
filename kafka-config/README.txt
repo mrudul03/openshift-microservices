@@ -1,0 +1,1 @@
+oc create -f apache-kafka-2.yaml
