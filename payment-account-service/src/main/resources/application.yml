@@ -1,7 +1,7 @@
 
 spring:
   datasource:
-    url: jdbc:mysql://${MYSQL_DB_HOST}:${MYSQL_DB_PORT}/accountdb?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+    url: jdbc:mysql://${MYSQL_DB_HOST}:${MYSQL_DB_PORT}/demodb?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
     username: ${MYSQL_DB_USER}
     password: ${MYSQL_DB_PASSWORD}
 

@@ -20,6 +20,9 @@ public class PaymentAccountController {
 			method = RequestMethod.GET, headers = "Accept=application/json")
 	public ResponseEntity<PaymentAccountResource> getCustomer(@PathVariable Long customerId,
 			@PathVariable Long accountId){
+		
+		System.out.println("Got a request for payment account.....................");
+		
 		PaymentAccountResource accountResource = new PaymentAccountResource("MyAccount", "Acc123", 123.00);
 		return ResponseEntity.ok(accountResource);
 	}

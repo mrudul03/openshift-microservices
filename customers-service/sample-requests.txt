@@ -18,3 +18,5 @@ http://customers-service-myproject.192.168.64.3.nip.io/customers/
 	    }
 	]
 }
+
+http://customers-service-demo-project.192.168.64.3.nip.io/customers/
