@@ -13,8 +13,8 @@ spring:
     hibernate:
       ddl-auto: update
       
-#  kafka:
-#    producer:
-#      bootstrap-servers: apache-kafka:9092
-#    consumer: 
-#      topic: customers
+  kafka:
+    consumer: 
+      bootstrap-servers: apache-kafka:9092
+      topic: customers
+      group-id: customers

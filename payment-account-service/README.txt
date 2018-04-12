@@ -17,8 +17,8 @@ oc create -f account-database.yaml
 
 Try with new docker file
 cd /Users/Mrudul/Documents/workspace-github/openshift-microservices/payment-account-service
-docker build -t mrudul03/payment-account-service:03 .
-docker push mrudul03/payment-account-service:03
+docker build -t mrudul03/payment-account-service:01 .
+docker push mrudul03/payment-account-service:01
 oc create -f payment-account-service.yaml
 oc expose svc payment-account-service
 

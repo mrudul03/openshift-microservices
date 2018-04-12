@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PaymentAccountResource {
 	
+	private Long customerId;
 	private String accountName;
 	private String accountNumber;
 	private double balance;

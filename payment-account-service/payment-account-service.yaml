@@ -30,7 +30,7 @@ spec:
         tier: compute
     spec:
       containers:
-        - image: docker.io/mrudul03/payment-account-service:03
+        - image: docker.io/mrudul03/payment-account-service:01
           imagePullPolicy: Always
           name: payment-account-service
           env:

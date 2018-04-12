@@ -33,6 +33,9 @@ public class PaymentAccountEntity {
 	@Column(name="account_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+	
+	@Column(name = "customer_id", nullable = false)
+    private Long customerId;
 
     @Column(name = "account_name", nullable = false)
     private String accountName;
