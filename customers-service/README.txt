@@ -13,3 +13,5 @@ oc delete all --selector buildconfigs=customers-service-s2i
 oc rsh $(oc get pods | grep demo-database | grep Running | awk '{print $1}')
 ## inside the pod 
 mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $HOSTNAME $MYSQL_DATABASE
+
+## https://github.com/bijukunjummen/sample-spring-kafka-producer-consumer
