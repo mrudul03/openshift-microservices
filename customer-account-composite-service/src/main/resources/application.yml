@@ -1,0 +1,7 @@
+customer:
+  api:
+    url: http://customers-service:8080
+    
+account:
+  api:
+    url: http://payment-account-service:8080
