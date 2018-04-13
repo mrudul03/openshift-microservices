@@ -26,7 +26,7 @@ public class PaymentAccountController {
 	
 	@RequestMapping(value="/customers/{customerId}/accounts/{accountId}", 
 			method = RequestMethod.GET, headers = "Accept=application/json")
-	public ResponseEntity<PaymentAccountResource> getCustomer(@PathVariable Long customerId,
+	public ResponseEntity<PaymentAccountResource> getAccount(@PathVariable Long customerId,
 			@PathVariable Long accountId){
 		
 		System.out.println("Got a request for payment account.....................");
