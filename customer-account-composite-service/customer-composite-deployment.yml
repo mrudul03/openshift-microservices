@@ -18,7 +18,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: docker.io/mrudul03/customer-composite-service:01
+      - image: docker.io/mrudul03/customer-composite-service:08
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
