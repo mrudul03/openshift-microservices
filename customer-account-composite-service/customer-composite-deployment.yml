@@ -2,32 +2,23 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    app: customer-service
+    app: customer-composite-service
     version: v1
-  name: customer-service
+  name: customer-composite-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: customer-service
+      app: customer-composite-service
       version: v1
   template:
     metadata:
       labels:
-        app: customer-service
+        app: customer-composite-service
         version: v1
     spec:
       containers:
-      - env:
-        - name: MYSQL_DB_USER
-          value: demouser
-        - name: MYSQL_DB_PASSWORD
-          value: password
-        - name: MYSQL_DB_HOST
-          value: demo-database
-        - name: MYSQL_DB_PORT
-          value: "3306"
-        image: docker.io/mrudul03/customer-service:01
+      - image: docker.io/mrudul03/customer-composite-service:01
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -37,7 +28,7 @@ spec:
           initialDelaySeconds: 10
           periodSeconds: 5
           timeoutSeconds: 1
-        name: customer-service
+        name: customer-composite-service
         ports:
         - containerPort: 8080
           name: http

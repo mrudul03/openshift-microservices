@@ -1,6 +1,6 @@
 customer:
   api:
-    url: http://customers-service:8080
+    url: http://customer-service:8080
     
 account:
   api:

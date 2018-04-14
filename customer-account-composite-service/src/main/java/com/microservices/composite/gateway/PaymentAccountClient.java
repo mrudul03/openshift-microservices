@@ -1,14 +1,18 @@
 package com.microservices.composite.gateway;
 import java.util.List;
 
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.microservices.composite.contract.PaymentAccountResource;
 
-import feign.Param;
-import feign.RequestLine;
-
+@FeignClient(name="payment-account-service", url="http://payment-account-service:8080")
 public interface PaymentAccountClient {
 	
-	@RequestLine("GET /customers/{customerId}/accounts/")
-	List<PaymentAccountResource> getAllAccounts(@Param("customerId") Long customerId);
+	//@RequestLine("GET /customers/{customerId}/accounts/")
+	@RequestMapping(method = RequestMethod.GET, value = "/customers/{customerId}/accounts/")
+	List<PaymentAccountResource> getAllAccounts(@PathVariable("customerId") Long customerId);
 
 }
