@@ -27,7 +27,7 @@ spec:
           value: demo-database
         - name: MYSQL_DB_PORT
           value: "3306"
-        image: docker.io/mrudul03/payment-account-service:01
+        image: docker.io/mrudul03/payment-account-service:23
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:

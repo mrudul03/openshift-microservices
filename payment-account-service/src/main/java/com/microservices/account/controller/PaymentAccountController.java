@@ -40,7 +40,7 @@ public class PaymentAccountController {
 		
 		System.out.println("Got a request for all payment accounts.....................");
 		return ResponseEntity.ok(entityToResourceTransformer.transformAccountList(
-				paymentAccountService.getPaymentAccounts(customerId)));
+				paymentAccountService.getPaymentAccountsByCustomer(customerId)));
 	}
 	
 	@RequestMapping(value="/customers/{customerId}/accounts/", 

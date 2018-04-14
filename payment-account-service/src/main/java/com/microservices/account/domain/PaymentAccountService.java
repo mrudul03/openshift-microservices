@@ -29,6 +29,10 @@ public class PaymentAccountService {
 		return paymentAccountRepository.findAll();
 	}
 	
+	public List<PaymentAccountEntity> getPaymentAccountsByCustomer(Long customerId){
+		return paymentAccountRepository.findByCustomerId(customerId);
+	}
+	
 	public PaymentAccountEntity createPaymentAccount(PaymentAccountResource accountResource){
 		System.out.println("Creating customer on controller req #######################");
 		PaymentAccountEntity accountEntity = resourceToEntityTransformer.transformAccount(accountResource);
