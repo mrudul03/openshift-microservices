@@ -9,6 +9,7 @@ import com.microservices.composite.contract.CustomerResource;
 
 @FeignClient(name="customer-service", url="http://customer-service:8080")
 public interface CustomerClient {
+	//http://customer-service:8080
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/customers/{customerId}")
 	CustomerResource getCustomer(@PathVariable("customerId") Long customerId);

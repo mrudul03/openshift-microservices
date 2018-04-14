@@ -11,7 +11,8 @@ import com.microservices.composite.contract.PaymentAccountResource;
 @FeignClient(name="payment-account-service", url="http://payment-account-service:8080")
 public interface PaymentAccountClient {
 	
-	//@RequestLine("GET /customers/{customerId}/accounts/")
+	//http://payment-account-service:8080
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/customers/{customerId}/accounts/")
 	List<PaymentAccountResource> getAllAccounts(@PathVariable("customerId") Long customerId);
 
