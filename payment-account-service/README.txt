@@ -12,4 +12,5 @@ oc expose svc payment-account-service
 oc delete all --selector app=payment-account-service
 
 http://payment-account-service-demo-project.192.168.64.3.nip.io/customers/1/accounts/123
+
 ===================================

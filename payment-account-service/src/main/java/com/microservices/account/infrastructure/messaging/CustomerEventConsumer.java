@@ -2,7 +2,6 @@ package com.microservices.account.infrastructure.messaging;
 
 import java.util.concurrent.CountDownLatch;
 
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +24,6 @@ public class CustomerEventConsumer {
 	public CountDownLatch getLatch() {
 		return latch;
 	}
-
-//	@KafkaListener(topics = "customers.t")
-//	public void receive(ConsumerRecord<?, ?> consumerRecord) {
-//		LOGGER.info("received payload='{}'", consumerRecord.toString());
-//		System.out.println("Received message ####################:"+consumerRecord.toString());
-//		PaymentAccountResource accountResource = new PaymentAccountResource(
-//				Long.valueOf(12), "Acc 12", "Acc 12", 123.00);
-//		paymentAccountService.createPaymentAccount(accountResource);
-//		System.out.println("Invoked create account ####################:");
-//		latch.countDown();
-//	}
 	
 	@KafkaListener(topics = "customers.t")
 	public void receive(CreatePaymentAccountCommand paymentAccountCommand) {
@@ -55,7 +43,6 @@ public class CustomerEventConsumer {
 		catch(Throwable t){
 			LOGGER.error("Exception at receive:", t);
 		}
-		
 	}
 
 }
