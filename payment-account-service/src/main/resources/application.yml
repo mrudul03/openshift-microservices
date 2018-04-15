@@ -16,5 +16,5 @@ spring:
   kafka:
     consumer: 
       bootstrap-servers: apache-kafka:9092
-      topic: customers
+      topic: customers.t
       group-id: customers

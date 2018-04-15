@@ -25,7 +25,7 @@ public class PaymentAccountService {
 		return paymentAccountRepository.getOne(id);
 	}
 	
-	public List<PaymentAccountEntity> getPaymentAccounts(Long id){
+	public List<PaymentAccountEntity> getAllAccounts(){
 		return paymentAccountRepository.findAll();
 	}
 	

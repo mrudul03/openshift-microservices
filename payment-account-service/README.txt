@@ -3,8 +3,8 @@ oc create -f demo-database.yaml
 oc create -f kafka-config.yaml
 ## https://github.com/bijukunjummen/sample-spring-kafka-producer-consumer
 
-docker build -t mrudul03/payment-account-service:23 .
-docker push mrudul03/payment-account-service:23
+docker build -t mrudul03/payment-account-service:28 .
+docker push mrudul03/payment-account-service:28
 oc apply -f payment-account-deployment.yml
 oc apply -f payment-account-service.yml
 oc expose svc payment-account-service

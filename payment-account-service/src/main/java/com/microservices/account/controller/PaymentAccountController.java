@@ -36,11 +36,20 @@ public class PaymentAccountController {
 	
 	@RequestMapping(value="/customers/{customerId}/accounts/", 
 			method = RequestMethod.GET, headers = "Accept=application/json")
-	public ResponseEntity<List<PaymentAccountResource>> getAllAccounts(@PathVariable Long customerId){
+	public ResponseEntity<List<PaymentAccountResource>> getAllAccountsPerCustomer(@PathVariable Long customerId){
+		
+		System.out.println("Got a request for all payment accounts for acustomer.....................");
+		return ResponseEntity.ok(entityToResourceTransformer.transformAccountList(
+				paymentAccountService.getPaymentAccountsByCustomer(customerId)));
+	}
+	
+	@RequestMapping(value="/accounts/", 
+			method = RequestMethod.GET, headers = "Accept=application/json")
+	public ResponseEntity<List<PaymentAccountResource>> getAllAccounts(){
 		
 		System.out.println("Got a request for all payment accounts.....................");
 		return ResponseEntity.ok(entityToResourceTransformer.transformAccountList(
-				paymentAccountService.getPaymentAccountsByCustomer(customerId)));
+				paymentAccountService.getAllAccounts()));
 	}
 	
 	@RequestMapping(value="/customers/{customerId}/accounts/", 
