@@ -1,18 +1,23 @@
 package com.microservices.customers.infrastructure.messaging;
 
-import java.io.Serializable;
-
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CreatePaymentAccountCommand implements Serializable{
-	
-	private static final long serialVersionUID = -2080280831933248960L;
+@NoArgsConstructor
+public class CreatePaymentAccountCommand {
 	
 	private Long customerId;
-	public String firstName;
-	public String lastName;
+	private String firstName;
+	private String lastName;
+	
+	@Override
+	public String toString() {
+		return "[CreatePaymentAccountCommand[customerId="+customerId+
+				" firstName="+firstName+
+				" lastName="+lastName+"]]";
+	}
 	
 }

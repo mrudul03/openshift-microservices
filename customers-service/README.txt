@@ -10,8 +10,8 @@ oc env dc customers-service -e MYSQL_DB_HOST=demo-database -e MYSQL_DB_PORT=3360
 
 ## https://github.com/bijukunjummen/sample-spring-kafka-producer-consumer
 
-docker build -t mrudul03/customer-service:23 .
-docker push mrudul03/customer-service:23
+docker build -t mrudul03/customer-service:29 .
+docker push mrudul03/customer-service:29
 oc apply -f customer-service-deployment.yml
 oc apply -f customer-service.yml
 oc expose svc customer-service

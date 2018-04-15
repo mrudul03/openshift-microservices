@@ -24,8 +24,19 @@
 		<spring-boot.version>1.5.3.RELEASE</spring-boot.version>
 		<fabric8-maven-plugin.version>3.5.33</fabric8-maven-plugin.version>
 		<spring-kafka.version>1.2.2.RELEASE</spring-kafka.version>
-		<spring-cloud.version>1.4.4.RELEASE</spring-cloud.version>
 	</properties>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+			    <groupId>org.springframework.cloud</groupId>
+			    <artifactId>spring-cloud-dependencies</artifactId>
+			    <version>Camden.SR7</version>
+			    <type>pom</type>
+			    <scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
@@ -76,7 +87,6 @@
     	<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
-			<version>${spring-cloud.version}</version>
 		</dependency>
 		
 	</dependencies>
