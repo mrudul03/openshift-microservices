@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.microservices.customers.contract.CustomerResource;
-import com.microservices.customers.gateway.CustomerEventPublisher;
+import com.microservices.customers.infrastructure.messaging.CreatePaymentAccountCommand;
+import com.microservices.customers.infrastructure.messaging.CustomerEventPublisher;
 import com.microservices.customers.repository.CustomerEntity;
 import com.microservices.customers.repository.CustomersRepository;
 import com.microservices.customers.transform.ResourceToEntityTransformer;
@@ -29,7 +30,9 @@ public class CustomerService {
 		CustomerEntity savedCustomer = customersRepository.save(customerEntity);
 		if(null != accountEventPublisher){
 			System.out.println("In service now - Publishing message ####################:");
-			accountEventPublisher.send("customers.t", "Customer created with id:"+ savedCustomer.getId());
+			CreatePaymentAccountCommand createPaymentAccountCommand = new CreatePaymentAccountCommand(
+					savedCustomer.getId(), savedCustomer.getFirstName(), savedCustomer.getLastName());
+			accountEventPublisher.sendCustomerData(createPaymentAccountCommand);
 		}
 		
 		return savedCustomer;
