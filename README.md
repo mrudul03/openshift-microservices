@@ -70,11 +70,11 @@ oc run -it --rm kafka-debug --image=rondinif/openshift-kafka --command -- bash
 ```
 
 ### Deploying Microservices
-* Compile and create application jar by executing maven command for all three microservices
+Compile and create application jar by executing maven command for all three microservices
 ```
 mvn clean install
 ```
-* Create and push customer-service docker image to docker hub and apply yml files to create OpenShift objects 
+Create and push customer-service docker image to docker hub and apply yml files to create OpenShift objects 
 ```
 docker build -t mrudul03/customer-service:v01 .
 docker push mrudul03/customer-service:v01
@@ -83,7 +83,7 @@ oc apply -f customer-service-deployment.yml
 oc apply -f customer-service.yml
 oc expose svc customer-service
 ```
-* Create and push payment-account-service docker image to docker hub and apply yml files to create OpenShift objects
+Create and push payment-account-service docker image to docker hub and apply yml files to create OpenShift objects
 ```
 docker build -t mrudul03/payment-account-service:v01 .
 docker push mrudul03/payment-account-service:v01
@@ -92,7 +92,7 @@ oc apply -f payment-account-deployment.yml
 oc apply -f payment-account-service.yml
 oc expose svc payment-account-service
 ```
-* Create and push customer-composite-service docker image to docker hub and apply yml files to create OpenShift objects
+Create and push customer-composite-service docker image to docker hub and apply yml files to create OpenShift objects
 ```
 docker build -t mrudul03/customer-composite-service:v01 .
 docker push mrudul03/customer-composite-service:v01
