@@ -20,19 +20,28 @@ The end-to-end architecture of the application is shown below.
 ## Prerequisite for Deployment
 
 ### minishift
-Before you try this example download and setup [minishift](https://docs.openshift.org/latest/minishift/index.html)
+Before you try this example download and setup [minishift](https://docs.openshift.org/latest/minishift/index.html). Create a profile with parametersand start minishift.
+```
+minishift profile set msa-demo
+minishift config set memory 8GB
+minishift config set cpus 3
+minishift config set image-caching true
+minishift addon enable admin-user
 
-Start a minishift with no parameters
+minishift start
 ```
-minishift start 
+
+### Create OpenShift Project
+Execute following command to create new project called "demo-project". 
 ```
-You can also start a minishift with 4GB memory and 2 CPUS and profile name called `springboot_msa_on_oc`
+oc login -u developer # login in to OpenShift with developer login
+oc new-project demo-project # create new project
 ```
-minishift --profile springboot_msa_on_oc --memory=4096 --cpus=2 start
-```
+
 ### CLI commands
-Get a list of PODs, services, routes.
+Below are some handy commands to get a list of projects, PODs, services, routes.
 ```
+ oc get projects
  oc get pods
  oc get svc
  oc get routes
