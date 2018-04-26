@@ -69,30 +69,62 @@ oc new-app apache-kafka
 oc run -it --rm kafka-debug --image=rondinif/openshift-kafka --command -- bash
 ```
 
-### Deploying Microservices to OpenShift
-* Compile and create application jar by executing command
+### Deploying Microservices
+* Compile and create application jar by executing maven command for all three microservices
 ```
 mvn clean install
 ```
-* Create and push docker image by running below commands.
+* Create and push customer-service docker image and Apply yml files to create OpenShift objects 
 ```
 docker build -t mrudul03/customer-service:v01 .
 docker push mrudul03/customer-service:v01
-```
 
-* Apply yml files to create OpenShift objects
-```
 oc apply -f customer-service-deployment.yml
 oc apply -f customer-service.yml
 oc expose svc customer-service
+```
+* Create and push payment-account-service docker image and Apply yml files to create OpenShift objects 
+```
+docker build -t mrudul03/payment-account-service:v01 .
+docker push mrudul03/payment-account-service:v01
+
+oc apply -f payment-account-deployment.yml
+oc apply -f payment-account-service.yml
+oc expose svc payment-account-service
+```
+* Create and push customer-composite-service docker image and Apply yml files to create OpenShift objects 
+```
+docker build -t mrudul03/customer-composite-service:v01 .
+docker push mrudul03/customer-composite-service:v01
+
+oc apply -f customer-composite-deployment.yml
+oc apply -f customer-composite-service.yml
+oc expose svc customer-composite-service
 ```
 
 ## Verify the deployment
 Check if all the pods are successfully created and running.
 ```
-oc get pods
-oc get svc
-oc get routes
+oc get pods # should give below result
+
+apache-kafka-1-24mv9                          2/2       Running   22         14d
+customer-composite-service-2982933011-bhfct   1/1       Running   6          11d
+customer-service-2191057949-kn7tv             0/1       Running   12         11d
+demo-database-2-mnkjg                         1/1       Running   8          14d
+kafka-debug-1-ff6pc                           1/1       Running   8          13d
+payment-account-service-2074609440-m8xkj      0/1       Running   12         11d
+
+oc get svc # should give below result
+apache-kafka                 172.30.234.79    <none>        9092/TCP,2181/TCP   14d
+customer-composite-service   172.30.77.189    <none>        8080/TCP            11d
+customer-service             172.30.3.65      <none>        8080/TCP            11d
+demo-database                172.30.62.13     <none>        3306/TCP            14d
+payment-account-service      172.30.159.210   <none>        8080/TCP            11d
+
+oc get routes # should give below result
+customer-composite-service   customer-composite-service-demo-project.192.168.64.3.nip.io             customer-composite-service   http                    None
+customer-service             customer-service-demo-project.192.168.64.3.nip.io                       customer-service             http                    None
+payment-account-service      payment-account-service-demo-project.192.168.64.3.nip.io                payment-account-service      http                    None
 ```
 
 ## Running Microservices
@@ -102,13 +134,13 @@ The hostname (customer-service-demo-project.192.168.64.3.nip.io) can be taken fr
 POST http://customer-service-demo-project.192.168.64.3.nip.io/customers/ 
 ```
 {
-  "firstName": "Mary 123",
-  "lastName": "Popins 123",
+  "firstName": "John",
+  "lastName": "Doe",
   "addresses": [
       {
-          "streetAddress": "Street Address",
-          "state": "State",
-          "city": "City",
+          "streetAddress": "Paradise",
+          "state": "CA",
+          "city": "Monaco",
           "areaCode": "3000",
           "addressType": "Home Address"
       }
@@ -126,6 +158,17 @@ POST http://customer-service-demo-project.192.168.64.3.nip.io/customers/
 Successful creation of customer record raises an event (CreatePaymentAccountCommand) on kafka. Payment Account Service consumes this event and creates a payment account.You can check the logs in openshift web console. At the same time, you can query Payment Account Service.
 ```
 GET http://payment-account-service-demo-project.192.168.64.3.nip.io/accounts/
+```
+
+### POST Payment Account
+POST http://payment-account-service-demo-project.192.168.64.3.nip.io/customers/1/accounts
+```
+{
+  "accountName": "My Account",
+  "accountNumber": "Acc Name 2",
+  "balance": 123.00
+  
+}
 ```
 
 ### Get Customer and Account details
