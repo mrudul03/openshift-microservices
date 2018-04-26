@@ -90,6 +90,7 @@ oc get routes
 
 ## Running application
 Create a customer by POST http://customer-service-demo-project.192.168.64.3.nip.io/customers/ 
+```
 {
   "firstName": "Mary 123",
   "lastName": "Popins 123",
@@ -109,7 +110,7 @@ Create a customer by POST http://customer-service-demo-project.192.168.64.3.nip.
       }
   ]
 }
-
+```
 Successful creation of customer record raises an event (CreatePaymentAccountCommand) on kafka. Payment Account Service consumes this event and creates a payment account.
 You can check the logs in openshift web console. At the same time, you can query Payment Account Service GET http://payment-account-service-demo-project.192.168.64.3.nip.io/accounts/ 
 
