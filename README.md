@@ -58,16 +58,14 @@ $ oc new-app -e MYSQL_USER=demouser MYSQL_PASSWORD=password MYSQL_DATABASE=demod
 ```
 Deploy Kafka by executing following command on openshift CLI. We will be using yml files from this [GitHub repo](https://github.com/rondinif/openshift-kafka) to deploy Kafka.
 
-* Load resources (Templates, DeploymentConfigs, Services)
 ```
+# Load resources (Templates, DeploymentConfigs, Services)
 oc create -f https://raw.githubusercontent.com/rondinif/openshift-kafka/master/resources.yaml
-```
-* Deploy the Apache Kafka + Apache Zookeeper pod
-```
+
+# Deploy the Apache Kafka + Apache Zookeeper pod
 oc new-app apache-kafka
-```
-* Deploy a debugging container and connect to it
-```
+
+# Deploy a debugging container and connect to it
 oc run -it --rm kafka-debug --image=rondinif/openshift-kafka --command -- bash
 ```
 
@@ -97,9 +95,10 @@ oc get svc
 oc get routes
 ```
 
-## Running Microservices Application
-The hostname (customer-service-demo-project.192.168.64.3.nip.io) would be different for your different.
+## Running Microservices
+
 ### Create a customer
+The hostname (customer-service-demo-project.192.168.64.3.nip.io) can be taken from route exposed for customer-service.
 POST http://customer-service-demo-project.192.168.64.3.nip.io/customers/ 
 ```
 {

@@ -23,4 +23,3 @@ oc apply -f customer-service.yml -n tutorial
 oc expose svc customer-service
 
 
-
