@@ -24,4 +24,3 @@ oc expose svc customer-service
 
 
 
-

@@ -76,13 +76,13 @@ oc run -it --rm kafka-debug --image=rondinif/openshift-kafka --command -- bash
 ```
 mvn clean install
 ```
-* Create docker image by running below command. The -t option tags the docker image with "mrudul03/customer-service:v01". After creating the docker image, push the image to docker hub.
+* Create and push docker image by running below commands.
 ```
 docker build -t mrudul03/customer-service:v01 .
 docker push mrudul03/customer-service:v01
 ```
 
-* apply yml files to create OpenShift objects
+* Apply yml files to create OpenShift objects
 ```
 oc apply -f customer-service-deployment.yml
 oc apply -f customer-service.yml
@@ -97,8 +97,10 @@ oc get svc
 oc get routes
 ```
 
-## Running application
-Create a customer by POST http://customer-service-demo-project.192.168.64.3.nip.io/customers/ 
+## Running Microservices Application
+The hostname (customer-service-demo-project.192.168.64.3.nip.io) would be different for your different.
+### Create a customer
+POST http://customer-service-demo-project.192.168.64.3.nip.io/customers/ 
 ```
 {
   "firstName": "Mary 123",
@@ -120,9 +122,17 @@ Create a customer by POST http://customer-service-demo-project.192.168.64.3.nip.
   ]
 }
 ```
-Successful creation of customer record raises an event (CreatePaymentAccountCommand) on kafka. Payment Account Service consumes this event and creates a payment account.
-You can check the logs in openshift web console. At the same time, you can query Payment Account Service GET http://payment-account-service-demo-project.192.168.64.3.nip.io/accounts/ 
 
-The composite service can be invoked by http://customer-composite-service-demo-project.192.168.64.3.nip.io/customers/1 
+### Get Payment Account
+Successful creation of customer record raises an event (CreatePaymentAccountCommand) on kafka. Payment Account Service consumes this event and creates a payment account.You can check the logs in openshift web console. At the same time, you can query Payment Account Service.
+```
+GET http://payment-account-service-demo-project.192.168.64.3.nip.io/accounts/
+```
+
+### Get Customer and Account details
+The composite service can be invoked by 
+```
+GET http://customer-composite-service-demo-project.192.168.64.3.nip.io/customers/1 
+```
 
 
