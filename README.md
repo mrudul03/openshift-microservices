@@ -179,4 +179,5 @@ The composite service can be invoked by
 GET http://customer-composite-service-demo-project.192.168.64.3.nip.io/customers/1 
 ```
 
-
+# Configure Istio and Envoy
+Please check [Istion & Envoy] (Istio-Envoy-Config.md)
