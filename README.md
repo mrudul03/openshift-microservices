@@ -180,4 +180,4 @@ GET http://customer-composite-service-demo-project.192.168.64.3.nip.io/customers
 ```
 
 # Configure Istio and Envoy
-Please check [Istion & Envoy] (Istio-Envoy-Config.md)
+Please check [Istion and Envoy](Istio-Envoy-Config.md)
