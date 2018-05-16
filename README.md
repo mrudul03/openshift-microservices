@@ -17,7 +17,7 @@ The composite service retrieves the data (customer data and payment account data
 
 The end-to-end architecture of the application is shown below.
 
-<img src="application-architecture.png" width="500" height="350" />
+<img src="application-architecture-v1.png" width="500" height="350" />
 
 ## Prerequisite for Deployment
 
