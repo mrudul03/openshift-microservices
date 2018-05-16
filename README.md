@@ -17,6 +17,8 @@ The composite service retrieves the data (customer data and payment account data
 
 The end-to-end architecture of the application is shown below.
 
+![Application Architecture](application-architecture.png)
+
 ## Prerequisite for Deployment
 
 ### minishift
